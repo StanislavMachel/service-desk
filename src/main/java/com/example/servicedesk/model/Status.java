@@ -1,6 +1,9 @@
 package com.example.servicedesk.model;
 
 public enum Status {
-	OPEN,
+	NEW,
+	TODO,
+	IN_PROGRESS,
+	DONE,
 	CLOSED
 }

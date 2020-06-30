@@ -13,5 +13,6 @@ public class GetTicketDto {
 	String email;
 	String description;
 	String priority;
+	String status;
 	ZonedDateTime created;
 }
