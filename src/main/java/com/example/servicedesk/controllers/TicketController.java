@@ -14,9 +14,12 @@ import javax.validation.Valid;
 import java.util.UUID;
 
 @CrossOrigin("http://localhost:4200")
-@RequestMapping("/api/tickets")
+@RequestMapping(TicketController.URL)
 @RestController
 public class TicketController {
+
+	public static final String URL = "/api/tickets";
+
 	private final TicketService ticketService;
 
 	public TicketController(TicketService ticketService) {

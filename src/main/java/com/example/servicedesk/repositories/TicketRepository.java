@@ -10,6 +10,5 @@ import java.util.List;
 import java.util.UUID;
 
 public interface TicketRepository extends JpaRepository<Ticket, UUID> {
-
 	Page<Ticket> findAllByStatusIn(List<Status> statuses, Pageable pageable);
 }

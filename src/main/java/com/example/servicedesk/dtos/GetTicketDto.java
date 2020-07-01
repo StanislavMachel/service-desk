@@ -1,10 +1,12 @@
 package com.example.servicedesk.dtos;
 
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.time.ZonedDateTime;
 import java.util.UUID;
 
+@Accessors(chain = true)
 @Data
 public class GetTicketDto {
 	UUID id;
