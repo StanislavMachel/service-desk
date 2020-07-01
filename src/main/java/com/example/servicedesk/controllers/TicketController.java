@@ -33,7 +33,7 @@ public class TicketController {
 
 	@GetMapping
 	ResponseEntity<GetTicketListDto> get(Pageable pageable) {
-		return ResponseEntity.ok(ticketService.getOpenTickets(pageable));
+		return ResponseEntity.ok(ticketService.getTicketsExceptWithClosedStatus(pageable));
 	}
 
 	@PostMapping

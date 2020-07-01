@@ -119,7 +119,7 @@ class TicketServiceImplTest {
 
 		Mockito.when(ticketRepository.findAllByStatusIn(Mockito.anyList(), Mockito.any())).thenReturn(ticketPage);
 
-		GetTicketListDto getTicketListDto = ticketService.getOpenTickets(PageRequest.of(0, 20));
+		GetTicketListDto getTicketListDto = ticketService.getTicketsExceptWithClosedStatus(PageRequest.of(0, 20));
 
 		Mockito.verify(ticketRepository, Mockito.times(1)).findAllByStatusIn(Mockito.anyList(), Mockito.any());
 

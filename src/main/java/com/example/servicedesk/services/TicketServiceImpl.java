@@ -36,7 +36,7 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public GetTicketListDto getOpenTickets(Pageable pageable) {
+	public GetTicketListDto getTicketsExceptWithClosedStatus(Pageable pageable) {
 
 		Page<Ticket> page = ticketRepository.findAllByStatusIn(Arrays.asList(Status.NEW, Status.TODO, Status.IN_PROGRESS, Status.DONE), pageable);
 

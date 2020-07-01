@@ -12,7 +12,7 @@ public interface TicketService {
 
 	GetTicketDto getById(UUID id);
 
-	GetTicketListDto getOpenTickets(Pageable pageable);
+	GetTicketListDto getTicketsExceptWithClosedStatus(Pageable pageable);
 
 	GetTicketDto create(PostTicketDto postTicketDto);
 

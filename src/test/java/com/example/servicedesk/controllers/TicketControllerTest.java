@@ -4,6 +4,7 @@ import com.example.servicedesk.dtos.GetTicketDto;
 import com.example.servicedesk.dtos.GetTicketListDto;
 import com.example.servicedesk.dtos.PostTicketDto;
 import com.example.servicedesk.dtos.PutTicketDto;
+import com.example.servicedesk.exceptions.TicketNotFoundException;
 import com.example.servicedesk.model.Priority;
 import com.example.servicedesk.model.Status;
 import com.example.servicedesk.services.TicketService;
@@ -25,6 +26,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.UUID;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -39,7 +41,7 @@ class TicketControllerTest {
 	private MockMvc mockMvc;
 
 	@Test
-	void getById() throws Exception {
+	void getByIdOk() throws Exception {
 		UUID id = UUID.randomUUID();
 		ZonedDateTime time = ZonedDateTime.now();
 		String description = "Sample description";
@@ -77,7 +79,15 @@ class TicketControllerTest {
 	}
 
 	@Test
-	void get() throws Exception {
+	void getByIdNotFound() throws Exception {
+		Mockito.when(ticketService.getById(Mockito.any())).thenThrow(TicketNotFoundException.class);
+
+		mockMvc.perform(MockMvcRequestBuilders.get(TicketController.URL + "/" + UUID.randomUUID()))
+				.andExpect(status().isNotFound());
+	}
+
+	@Test
+	void getOk() throws Exception {
 
 		UUID id = UUID.randomUUID();
 		ZonedDateTime time = ZonedDateTime.now();
@@ -88,7 +98,7 @@ class TicketControllerTest {
 		Priority priority = Priority.TRIVIAL;
 		Status status = Status.NEW;
 
-		Mockito.when(ticketService.getOpenTickets(Mockito.any())).thenReturn(new GetTicketListDto()
+		Mockito.when(ticketService.getTicketsExceptWithClosedStatus(Mockito.any())).thenReturn(new GetTicketListDto()
 				.setItems(Arrays.asList(new GetTicketDto()
 								.setId(id)
 								.setDescription(description)
@@ -127,7 +137,7 @@ class TicketControllerTest {
 	}
 
 	@Test
-	void postCreated() throws Exception {
+	void postOk() throws Exception {
 		UUID id = UUID.randomUUID();
 		ZonedDateTime time = ZonedDateTime.now();
 		String description = "Sample description";
@@ -246,6 +256,26 @@ class TicketControllerTest {
 				.andExpect(jsonPath("$.created", Matchers.is(time.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME))));
 
 		Mockito.verify(ticketService, Mockito.times(1)).update(eq(id), Mockito.any());
+	}
+
+	@Test
+	void putNotFound() throws Exception {
+
+		PutTicketDto putTicketDto = new PutTicketDto()
+				.setTitle("Sample title updated")
+				.setEmail("example.updated@example.com")
+				.setDescription("Sample description updated")
+				.setPriority(Priority.BLOCKER)
+				.setStatus(Status.DONE);
+
+		Mockito.when(ticketService.getById(Mockito.any())).thenThrow(TicketNotFoundException.class);
+
+		mockMvc.perform(MockMvcRequestBuilders.get(TicketController.URL + "/" + UUID.randomUUID())
+				.content(asJsonString(putTicketDto))
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNotFound());
+
+		Mockito.verify(ticketService, Mockito.never()).update(any(), any());
 	}
 
 	@Test
