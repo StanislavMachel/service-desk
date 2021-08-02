@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 public class GetTicketListDto {
-	private List<GetTicketDto> items;
-	private Long total;
-	private Integer totalPages;
+  private List<GetTicketDto> items;
+  private Long total;
+  private Integer totalPages;
 }

@@ -12,27 +12,27 @@ import java.util.Random;
 @Service
 public class Bootstrap implements CommandLineRunner {
 
-	private final TicketRepository ticketRepository;
+  private final TicketRepository ticketRepository;
 
-	public Bootstrap(TicketRepository ticketRepository) {
-		this.ticketRepository = ticketRepository;
-	}
+  public Bootstrap(TicketRepository ticketRepository) {
+    this.ticketRepository = ticketRepository;
+  }
 
-	@Override
-	public void run(String... args) {
+  @Override
+  public void run(String... args) {
 
-		Random random = new Random();
+    Random random = new Random();
 
-		for (int i = 0; i < 100; i++) {
-			Ticket ticket = new Ticket()
-					.setTitle("Ticket title " + i)
-					.setDescription("Ticket " + i + " description...")
-					.setEmail("example" + i + "@example.com")
-					.setPriority(Priority.values()[random.nextInt(5)])
-					.setStatus(Status.values()[random.nextInt(5)]);
+    for (int i = 0; i < 100; i++) {
+      Ticket ticket =
+          new Ticket()
+              .setTitle("Ticket title " + i)
+              .setDescription("Ticket " + i + " description...")
+              .setEmail("example" + i + "@example.com")
+              .setPriority(Priority.values()[random.nextInt(5)])
+              .setStatus(Status.values()[random.nextInt(5)]);
 
-			ticketRepository.save(ticket);
-		}
-
-	}
+      ticketRepository.save(ticket);
+    }
+  }
 }

@@ -10,11 +10,11 @@ import java.util.UUID;
 
 public interface TicketService {
 
-	GetTicketDto getById(UUID id);
+  GetTicketDto getById(UUID id);
 
-	GetTicketListDto getTicketsExceptWithClosedStatus(Pageable pageable);
+  GetTicketListDto getTicketsExceptWithClosedStatus(Pageable pageable);
 
-	GetTicketDto create(PostTicketDto postTicketDto);
+  GetTicketDto create(PostTicketDto postTicketDto);
 
-	GetTicketDto update(UUID id, PutTicketDto putTicketDto);
+  GetTicketDto update(UUID id, PutTicketDto putTicketDto);
 }

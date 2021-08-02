@@ -18,31 +18,32 @@ import java.util.UUID;
 @RestController
 public class TicketController {
 
-	public static final String URL = "/api/tickets";
+  public static final String URL = "/api/tickets";
 
-	private final TicketService ticketService;
+  private final TicketService ticketService;
 
-	public TicketController(TicketService ticketService) {
-		this.ticketService = ticketService;
-	}
+  public TicketController(TicketService ticketService) {
+    this.ticketService = ticketService;
+  }
 
-	@GetMapping("/{id}")
-	ResponseEntity<GetTicketDto> getById(@PathVariable UUID id) {
-		return ResponseEntity.ok(ticketService.getById(id));
-	}
+  @GetMapping("/{id}")
+  public ResponseEntity<GetTicketDto> getById(@PathVariable UUID id) {
+    return ResponseEntity.ok(ticketService.getById(id));
+  }
 
-	@GetMapping
-	ResponseEntity<GetTicketListDto> get(Pageable pageable) {
-		return ResponseEntity.ok(ticketService.getTicketsExceptWithClosedStatus(pageable));
-	}
+  @GetMapping
+  public ResponseEntity<GetTicketListDto> get(Pageable pageable) {
+    return ResponseEntity.ok(ticketService.getTicketsExceptWithClosedStatus(pageable));
+  }
 
-	@PostMapping
-	ResponseEntity<GetTicketDto> post(@Valid @RequestBody PostTicketDto postTicketDto) {
-		return new ResponseEntity<>(ticketService.create(postTicketDto), HttpStatus.CREATED);
-	}
+  @PostMapping
+  public ResponseEntity<GetTicketDto> post(@Valid @RequestBody PostTicketDto postTicketDto) {
+    return new ResponseEntity<>(ticketService.create(postTicketDto), HttpStatus.CREATED);
+  }
 
-	@PutMapping("/{id}")
-	ResponseEntity<GetTicketDto> put(@PathVariable UUID id, @Valid @RequestBody PutTicketDto putTicketDto) {
-		return ResponseEntity.ok(ticketService.update(id, putTicketDto));
-	}
+  @PutMapping("/{id}")
+  public ResponseEntity<GetTicketDto> put(
+      @PathVariable UUID id, @Valid @RequestBody PutTicketDto putTicketDto) {
+    return ResponseEntity.ok(ticketService.update(id, putTicketDto));
+  }
 }

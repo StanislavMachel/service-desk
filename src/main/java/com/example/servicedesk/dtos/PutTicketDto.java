@@ -13,19 +13,13 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PutTicketDto {
 
-	@NotBlank
-	private String title;
+  @NotBlank private String title;
 
-	@NotBlank
-	@Email
-	private String email;
+  @NotBlank @Email private String email;
 
-	@NotBlank
-	private String description;
+  @NotBlank private String description;
 
-	@NotNull
-	private Priority priority;
+  @NotNull private Priority priority;
 
-	@NotNull
-	private Status status;
+  @NotNull private Status status;
 }
