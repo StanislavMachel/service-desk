@@ -2,6 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.3.12.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java'
+    id 'checkstyle'
 }
 
 group = 'com.example'
@@ -17,6 +18,11 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+checkstyle {
+    toolVersion = 8.30
+    configFile = rootProject.file('config/checkstyle/google_checks.xml')
 }
 
 dependencies {
