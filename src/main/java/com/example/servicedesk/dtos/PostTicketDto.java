@@ -10,16 +10,11 @@ import javax.validation.constraints.NotNull;
 @Accessors(chain = true)
 @Data
 public class PostTicketDto {
-	@NotBlank
-	String title;
+  @NotBlank String title;
 
-	@NotBlank
-	@Email
-	String email;
+  @NotBlank @Email String email;
 
-	@NotBlank
-	String description;
+  @NotBlank String description;
 
-	@NotNull
-	String priority;
+  @NotNull String priority;
 }

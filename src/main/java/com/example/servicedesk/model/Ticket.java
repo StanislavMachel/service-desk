@@ -20,25 +20,26 @@ import java.util.UUID;
 @Data
 @Accessors(chain = true)
 public class Ticket {
-	@Id
-	@GeneratedValue(generator = "UUID")
-	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
-	private UUID id;
-	private String title;
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+  private UUID id;
 
-	@Setter(AccessLevel.PROTECTED)
-	@GeneratorType(type = TicketSerialNumberGenerator.class, when = GenerationTime.INSERT)
-	@Column(updatable = false)
-	private String number;
+  private String title;
 
-	private String email;
-	private String description;
+  @Setter(AccessLevel.PROTECTED)
+  @GeneratorType(type = TicketSerialNumberGenerator.class, when = GenerationTime.INSERT)
+  @Column(updatable = false)
+  private String number;
 
-	private Priority priority;
+  private String email;
+  private String description;
 
-	private Status status;
+  private Priority priority;
 
-	@Setter(AccessLevel.PROTECTED)
-	@CreationTimestamp
-	private ZonedDateTime created;
+  private Status status;
+
+  @Setter(AccessLevel.PROTECTED)
+  @CreationTimestamp
+  private ZonedDateTime created;
 }
