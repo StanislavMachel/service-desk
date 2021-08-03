@@ -1,1 +1,8 @@
 rootProject.name = 'service-desk'
+include 'core'
+include 'web'
+
+ext{
+
+}
+
