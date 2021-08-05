@@ -1,14 +1,5 @@
-plugins {
-    id 'org.springframework.boot' version '2.3.12.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
-//    id 'checkstyle'
-}
-
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
-targetCompatibility = '11'
 
 repositories {
     mavenCentral()
@@ -43,40 +34,8 @@ dependencies {
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
-
-
-
 }
 
 test {
-//    classpath = project(":core").sourceSets.main.runtimeClasspath
     useJUnitPlatform()
 }
-
-
-//plugins {
-//    id 'org.springframework.boot' version '2.3.12.RELEASE'
-//    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-//    id 'java'
-//    id 'checkstyle'
-//}
-
-//group = 'com.example'
-//version = '0.0.1-SNAPSHOT'
-//sourceCompatibility = '11'
-//targetCompatibility = '11'
-//
-//repositories {
-//    mavenCentral()
-//}
-//
-//checkstyle {
-//    toolVersion = 8.30
-//    configFile = rootProject.file('com.example.servicedesk.web.config/checkstyle/google_checks.xml')
-//}
-//
-//dependencies {
-//    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-//        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-//    }
-//}

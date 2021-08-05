@@ -1,0 +1,23 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${SPRING_BOOT_VERSION}")
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'checkstyle'
+
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+
+    checkstyle {
+        toolVersion = 8.30
+        configFile = rootProject.file('config/checkstyle/google_checks.xml')
+    }
+}
