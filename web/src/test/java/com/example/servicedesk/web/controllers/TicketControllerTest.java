@@ -2,6 +2,7 @@ package com.example.servicedesk.web.controllers;
 
 import com.example.servicedesk.core.model.Priority;
 import com.example.servicedesk.core.model.Status;
+import com.example.servicedesk.web.assemblers.GetTicketDtoAssembler;
 import com.example.servicedesk.web.dtos.GetTicketDto;
 import com.example.servicedesk.web.dtos.GetTicketListDto;
 import com.example.servicedesk.web.dtos.PostTicketDto;
@@ -30,15 +31,20 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@Disabled
 @WebMvcTest
-@ContextConfiguration(classes = {TicketController.class, GlobalControllerExceptionHandler.class})
+@ContextConfiguration(
+    classes = {
+      TicketController.class,
+      GlobalControllerExceptionHandler.class,
+      GetTicketDtoAssembler.class
+    })
 class TicketControllerTest {
 
   @MockBean private TicketService ticketService;
 
   @Autowired private MockMvc mockMvc;
 
+  @Disabled("Should be updated with hal+json")
   @Test
   void getByIdOk() throws Exception {
     UUID id = UUID.randomUUID();
@@ -88,7 +94,7 @@ class TicketControllerTest {
         .perform(MockMvcRequestBuilders.get(TicketController.URL + "/" + UUID.randomUUID()))
         .andExpect(status().isNotFound());
   }
-
+  @Disabled("Should be updated with hal+json")
   @Test
   void getOk() throws Exception {
 
