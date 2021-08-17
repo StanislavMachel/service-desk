@@ -6,6 +6,7 @@ import com.example.servicedesk.core.model.Ticket;
 import com.example.servicedesk.core.repositories.TicketRepository;
 import com.example.servicedesk.web.ServiceDeskApplication;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Disabled
 @ContextConfiguration(
     classes = ServiceDeskApplication.class,
     loader = AnnotationConfigContextLoader.class)

@@ -10,6 +10,7 @@ import com.example.servicedesk.web.exceptions.TicketNotFoundException;
 import com.example.servicedesk.web.services.TicketService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+@Disabled
 @WebMvcTest
 @ContextConfiguration(classes = {TicketController.class, GlobalControllerExceptionHandler.class})
 class TicketControllerTest {
